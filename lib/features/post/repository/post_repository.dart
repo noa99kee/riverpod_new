@@ -5,6 +5,7 @@ import 'package:retrofit/retrofit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_new/dio_provider.dart';
 import 'package:riverpod_new/features/post/model/post.dart';
+import 'package:riverpod_new/features/todo/repository/todo_repository.dart';
 
 part 'post_repository.g.dart';
 
@@ -36,7 +37,11 @@ abstract class PostRepository {
 
 //auto dispose
 @riverpod
-Future<List<Post>> posts(PostsRef ref) {
+Future<List<Post>> posts(PostsRef ref) async {
+  print('postsProvider');
+  //프로바이더 안에서 다른 프로바이더 호출
+  final todos = await ref.watch(todosProvider.future);
+  print('todos:$todos');
   return ref.watch(postRepositoryProvider).fetchPosts().catchError(
     (Object obj) {
       //에러 처리
@@ -48,7 +53,11 @@ Future<List<Post>> posts(PostsRef ref) {
           break;
       }
     },
-  );
+  ).then((posts) {
+    print('#################################');
+    print('posts:$posts');
+    return posts;
+  });
 }
 
 //auto dispose

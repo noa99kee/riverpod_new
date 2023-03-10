@@ -131,7 +131,7 @@ final postRepositoryProvider = AutoDisposeProvider<PostRepository>.internal(
 );
 
 typedef PostRepositoryRef = AutoDisposeProviderRef<PostRepository>;
-String _$postsHash() => r'c7156aec76787bc1e7866c3ce9452c6760aeb290';
+String _$postsHash() => r'40627d4bed8c0c156081e10729dd41e26405b765';
 
 /// See also [posts].
 @ProviderFor(posts)

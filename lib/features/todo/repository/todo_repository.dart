@@ -29,6 +29,7 @@ abstract class TodoRepository {
 //auto dispose
 @riverpod
 Future<List<Todo>> todos(TodosRef ref) {
+  print('todosProvider');
   return ref.watch(todoRepositoryProvider).fetchTodos().catchError(
     (Object obj) {
       //에러 처리

@@ -104,7 +104,7 @@ final todoRepositoryProvider = AutoDisposeProvider<TodoRepository>.internal(
 );
 
 typedef TodoRepositoryRef = AutoDisposeProviderRef<TodoRepository>;
-String _$todosHash() => r'06560689375c3fe9a3b75e39515a2afd211d4c29';
+String _$todosHash() => r'82c5e7424742f2f2dc18c5080d22042c551b7b4d';
 
 /// See also [todos].
 @ProviderFor(todos)
