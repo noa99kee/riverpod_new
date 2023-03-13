@@ -47,6 +47,7 @@ Future<List<Todo>> todos(TodosRef ref) {
 //auto dispose
 @riverpod
 Future<Todo> todo(TodoRef ref, int id) {
+  print('todoProvider');
   final link = ref.keepAlive();
   Timer? timer;
   final CancelToken cancelToken = CancelToken();

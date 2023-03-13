@@ -4,6 +4,7 @@ import 'package:riverpod_new/features/auth/view/auth_screen.dart';
 import 'package:riverpod_new/features/post/view/post_detail_screen.dart';
 import 'package:riverpod_new/features/post/view/post_edit_screen.dart';
 import 'package:riverpod_new/features/post/view/post_screen.dart';
+import 'package:riverpod_new/features/stream/view/stream_screen.dart';
 import 'package:riverpod_new/features/todo/view/todo_detail_screen.dart';
 import 'package:riverpod_new/features/todo/view/todo_screen.dart';
 import 'package:riverpod_new/home_screen.dart';
@@ -59,6 +60,11 @@ GoRouter router(RouterRef ref) => GoRouter(
                 ),
               ],
             ),
+            GoRoute(
+              path: 'stream',
+              pageBuilder: (context, state) =>
+                  NoTransitionPage(child: StreamScreen()),
+            )
           ],
         ),
       ],

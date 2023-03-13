@@ -118,7 +118,7 @@ final todosProvider = AutoDisposeFutureProvider<List<Todo>>.internal(
 );
 
 typedef TodosRef = AutoDisposeFutureProviderRef<List<Todo>>;
-String _$todoHash() => r'976ef5a06e40a8bacf5ad3daf81ed383806b6db2';
+String _$todoHash() => r'd972eaf4dbe945c11025ca9e64cf63684f87823b';
 
 /// Copied from Dart SDK
 class _SystemHash {

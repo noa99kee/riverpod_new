@@ -41,7 +41,14 @@ Future<List<Post>> posts(PostsRef ref) async {
   print('postsProvider');
   //프로바이더 안에서 다른 프로바이더 호출
   final todos = await ref.watch(todosProvider.future);
-  print('todos:$todos');
+  //print('todos:$todos');
+
+  //미리 200개 불러 오기 가능 다중 요청 병렬 처리(모든 요청을 다 보내놓고 결과를 기다림)
+  DateTime start = DateTime.now();
+  await Future.wait(
+      [for (final todo in todos) ref.watch(todoProvider(todo.id).future)]);
+  DateTime end = DateTime.now();
+  print('소요 시간 : ${end.difference(start)}');
   return ref.watch(postRepositoryProvider).fetchPosts().catchError(
     (Object obj) {
       //에러 처리

@@ -39,6 +39,15 @@ class HomeScreen extends StatelessWidget {
                   child: Text('post'),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    context.go('/stream');
+                  },
+                  child: Text('stream'),
+                ),
+              ),
             ],
           ),
         ),
