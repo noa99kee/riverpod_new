@@ -11,25 +11,30 @@ class TodoScreen extends ConsumerWidget {
     final asyncTodos = ref.watch(todosProvider);
     return Scaffold(
       appBar: AppBar(title: Text('todo')),
-      body: asyncTodos.when(
-        data: (todos) => ListView.separated(
-          itemCount: todos.length,
-          itemBuilder: (context, index) {
-            final todo = todos[index];
-            return GestureDetector(
-              onTap: () {
-                context.go('/todo/detail/${todo.id}');
-              },
-              child: ListTile(
-                title: Text(todo.title),
-              ),
-            );
-          },
-          separatorBuilder: (context, index) => const Divider(),
-        ),
-        error: (error, stackTrace) => Center(child: Text(error.toString())),
-        loading: () => Center(
-          child: CircularProgressIndicator(),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          return await ref.refresh(todosProvider);
+        },
+        child: asyncTodos.when(
+          data: (todos) => ListView.separated(
+            itemCount: todos.length,
+            itemBuilder: (context, index) {
+              final todo = todos[index];
+              return GestureDetector(
+                onTap: () {
+                  context.go('/todo/detail/${todo.id}');
+                },
+                child: ListTile(
+                  title: Text(todo.title),
+                ),
+              );
+            },
+            separatorBuilder: (context, index) => const Divider(),
+          ),
+          error: (error, stackTrace) => Center(child: Text(error.toString())),
+          loading: () => Center(
+            child: CircularProgressIndicator(),
+          ),
         ),
       ),
     );

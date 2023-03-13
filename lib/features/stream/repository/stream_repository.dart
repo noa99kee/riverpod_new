@@ -19,6 +19,22 @@ class StreamRepository {
       '{"id":1, "title":"titanic"}',
       '{"id":2, "title":"avatar"}',
     ];
+    await Future.delayed(Duration(seconds: 1));
+    yield ['{"id":1, "title":"titanic"}'];
+
+    await Future.delayed(Duration(seconds: 1));
+    yield [
+      '{"id":1, "title":"titanic"}',
+      '{"id":2, "title":"avatar"}',
+    ];
+    await Future.delayed(Duration(seconds: 1));
+    yield ['{"id":1, "title":"titanic"}'];
+
+    await Future.delayed(Duration(seconds: 1));
+    yield [
+      '{"id":1, "title":"titanic"}',
+      '{"id":2, "title":"avatar"}',
+    ];
   }
 
   Stream<List<Movie>> getStreamMovies() {
@@ -31,6 +47,11 @@ class StreamRepository {
 @riverpod
 Stream<List<Movie>> streamMovies(StreamMoviesRef ref) {
   final repository = ref.watch(streamRepositoryProvider);
+
+  ref.onDispose(() {
+    print('streamMoviesProvider dispose');
+  });
+
   return repository.getStreamMovies();
 }
 

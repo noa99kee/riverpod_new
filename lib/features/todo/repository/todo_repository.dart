@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_new/dio_provider.dart';
+import 'package:riverpod_new/features/auth/controller/auth_controller.dart';
+import 'package:riverpod_new/features/stream/repository/stream_repository.dart';
 import 'package:riverpod_new/features/todo/model/todo.dart';
 part 'todo_repository.g.dart';
 
@@ -30,6 +32,9 @@ abstract class TodoRepository {
 @riverpod
 Future<List<Todo>> todos(TodosRef ref) {
   print('todosProvider');
+  ref.listen(streamMoviesProvider, (previous, next) {
+    print('auth changed $next');
+  });
   return ref.watch(todoRepositoryProvider).fetchTodos().catchError(
     (Object obj) {
       //에러 처리

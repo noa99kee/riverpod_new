@@ -21,7 +21,7 @@ final streamRepositoryProvider = AutoDisposeProvider<StreamRepository>.internal(
 );
 
 typedef StreamRepositoryRef = AutoDisposeProviderRef<StreamRepository>;
-String _$streamMoviesHash() => r'7e7d1091c1dd946a51fb1cc8ef52ef813408db62';
+String _$streamMoviesHash() => r'ba09cabcbdd942f50bbbeb7d975b51e531afc8f6';
 
 /// See also [streamMovies].
 @ProviderFor(streamMovies)
